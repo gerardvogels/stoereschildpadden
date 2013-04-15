@@ -1,0 +1,63 @@
+<h1><?=$this->title?></h1>
+<p>
+		Vergeet niet na een wijziging de "submit" knop aan te klikken. 
+		Als je dit nalaat gaan de wijzigingen verloren.
+		De "submit" knop bevindt zich helemaal onder aan de pagina.
+
+<form enctype="application/x-www-form-urlencoded" method="post">
+	<?php foreach ($this->pagePerGroup as $groupName => $pages): ?>
+		<h2>Pagina's  van de de groep <?=$groupName?></h2>
+		<table class='indexTable'>
+			<!-- ========================== -->
+			<!-- = De header van de tabel = -->
+			<!-- ========================== -->
+			<tr>
+				<th>
+					pagina
+				</th>
+				<th>
+					menutitel
+				</th>
+				<?php foreach ($this->groups as $group): ?>
+					<th>
+						<?=$group->name?>
+					</th>
+				<?php endforeach ?>
+			</tr>
+
+			<!-- ======================== -->
+			<!-- = De body van de tabel = -->
+			<!-- ======================== -->
+			<?php foreach ($pages as $page): ?>
+				<?php $page->loadGroups(); ?>
+				<tr>
+					<td>
+						<?=$page->title?>
+					</td>
+					<td>
+						<?=$page->menutitle?>
+					</td>
+					<?php
+						foreach($this->groups as $group)
+						{
+							echo "<td>\n";
+							if(in_array($group->id, $page->getGroups()))
+							{
+								$checked='checked="checked"';
+							}
+							else
+							{
+								$checked='';
+							}
+							$index = '[' . $page->id . '][' . $group->id . ']';
+							echo "<input type=\"hidden\" name=\"pageGrp" . $index . "\"  value=\"no\" >\n";
+							echo "<input type=\"checkbox\" name=\"pageGrp" . $index . "\"  value=\"yes\" " . $checked . ">\n";
+							echo "</td>\n";  
+						}
+					?>
+				</tr>
+			<?php endforeach ?>
+		</table>
+	<?php endforeach ?>
+	<input type="submit" name="submit" value="submit">
+</form>

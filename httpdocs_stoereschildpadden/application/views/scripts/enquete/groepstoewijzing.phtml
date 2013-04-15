@@ -1,0 +1,72 @@
+<h2><?=$this->title?></h2>
+<div id='filterForm'>
+	<!-- ======================================== -->
+	<!-- = Het formulier voor de groepsselectie = -->
+	<!-- ======================================== -->
+	<?=$this->gsForm?>
+</div>
+<br><br>
+<form enctype="application/x-www-form-urlencoded" method="post">
+	<?php 
+		$groups = $this->gsForm->getValue('groups');
+		$teller = 0;
+		foreach($groups as $group)
+		{
+			echo "<input type=\"hidden\" name=\"groups[" . $teller . "]\" value=\"" . $group . "\">\n";
+			$teller++;
+		}
+	?>
+	<table class='indexTable'>
+		<!-- ========================== -->
+		<!-- = De header van de tabel = -->
+		<!-- ========================== -->
+		<tr>
+			<th>
+				enquete
+			</th>
+			<?php foreach ($this->groups as $group): ?>
+				<th>
+					<?=$group->name?>
+				</th>
+			<?php endforeach ?>
+			<th>
+				bewerkingen
+			</th>
+		</tr>
+	
+		<!-- ======================== -->
+		<!-- = De body van de tabel = -->
+		<!-- ======================== -->
+		<?php foreach ($this->enquetes as $enquete): ?>
+			<?php $enquete->loadGroups(); ?>
+			<tr>
+				<td>
+					<?=$enquete->title?>
+				</td>
+				<?php
+					foreach($this->groups as $group)
+					{
+						echo "<td>\n";
+						if(in_array($group->id, $enquete->getGroups()))
+						{
+							$checked='checked="checked"';
+						}
+						else
+						{
+							$checked='';
+						}
+						$index = '[' . $enquete->id . '][' . $group->id . ']';
+						echo "<input type=\"hidden\" name=\"enqueteGrp" . $index . "\"  value=\"no\" >\n";
+						echo "<input type=\"checkbox\" name=\"enqueteGrp" . $index . "\"  value=\"yes\" " . $checked . ">\n";
+						echo "</td>\n";  
+					}
+				?>
+				<td>
+					<a href="/enquete/edit/id/<?=$enquete->id?>">bewerk</a>
+					<a href="/enquete/delete/id/<?=$enquete->id?>">verwijder</a>
+				</td>
+			</tr>
+		<?php endforeach ?>
+	</table>
+	<input type="submit" name="submit" value="submit">
+</form>

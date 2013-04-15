@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="nl">
+<?php 
+
+$this->headTitle($this->title);
+
+?>
+
+<head> 
+	
+	<!--
+	  -
+	  - Vogels Internettoepassingen
+	  - http://vogels-it.nl
+	  - info@vogels-it.nl
+	  -
+	 -->
+	
+	<?= $this->headTitle() . "\n" ?>
+	<meta charset="utf-8">
+	<?= $this->headScript() . "\n" ?>
+	<?= $this->headLink() . "\n" ?>
+	<?= $this->jQuery() . "\n" ?>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('table.indexTable tr').hover(
+			function() {
+				$(this).addClass('hover');
+			},
+			function() {
+				$(this).removeClass('hover');
+			}
+		);
+	});
+</script>
+
+</head>
+
+
+<body>
+	<?php if ($this->user): ?>
+		<div id="currentUser">
+			<?php
+				echo 'Ingelogd als: ' . $this->user->getFullName();
+				echo ' (' . implode(', ', $this->user->getGroupNames()) . ')';
+				echo ' (' . implode(', ', $this->user->getRoleNames()) . ')';
+			?>
+		</div>
+	<?php endif ?>
+	
+	<div id="pagebanner">
+	</div>
+
+	<div id="adminTabs">
+		<?=$this->adminTabs?>
+	</div>
+
+	<div id="l-container">
+		<?php if ($this->sysMessages): ?>
+			<div id="systemMessages">
+				<?=$this->sysMessages?>
+			</div>
+		<?php endif ?>
+		<?php if (is_array($this->flowMenuItems)): ?>
+			<div id="flowmenu">
+				<ul>
+					<?php foreach ($this->flowMenuItems as $prompt => $link): ?>
+						<?php if (strstr($link,'/delete/')): ?>
+							<li><a href="<?=$link?>" class="confirm" data:confirmation="Wilt u dit item echt verwijderen?"><?=$prompt?></a></li>
+						<?php else: ?>
+							<li><a href="<?=$link?>"><?=$prompt?></a></li>
+						<?php endif ?>
+					<?php endforeach ?>
+				</ul>
+			</div> 
+		<?php endif ?>
+		<div id="l-content">
+			<?=$this->layout()->content?>	
+		</div>
+	</div>
+</body>
+</html>

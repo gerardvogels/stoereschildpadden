@@ -1,0 +1,30 @@
+<h1><?=$this->title?></h1>
+<table class="indexTable">
+	<tr>
+		<th>pagina</th>
+		<th>menutitel</th>
+		<th>eigenaar</th>
+		<th>bewerkingen</th>
+	</tr>
+	<?php foreach ($this->pages as $page): ?>
+		<tr>
+			<td>
+				<?=$page->title?>
+			</td>
+			<td>
+				<?=$page->menutitle?>
+			</td>
+			<td>
+				<?php
+					$owner = Model_Group::getInstance($page->owner);
+					echo $owner->name;
+				?>
+			</td>
+			<td class="actions">
+				<a href="/page/preview/id/<?=$page->id?>">toon</a>
+				<a href="/page/edit/id/<?=$page->id?>">bewerk</a>
+				<a href="/page/delete/id/<?=$page->id?>" class="confirm" data:confirmation="Wilt u de pagina <?=strtoupper($page->title)?> echt verwijderen?">verwijder</a>
+			</td>
+		</tr>
+	<?php endforeach ?>
+</table>

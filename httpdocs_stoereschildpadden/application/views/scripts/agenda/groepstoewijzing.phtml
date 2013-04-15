@@ -1,0 +1,72 @@
+<h2><?=$this->title?></h2>
+<div id='filterForm'>
+	<!-- ======================================== -->
+	<!-- = Het formulier voor de groepsselectie = -->
+	<!-- ======================================== -->
+	<?=$this->gsForm?>
+</div>
+<br><br>
+<form enctype="application/x-www-form-urlencoded" method="post">
+	<?php 
+		$groups = $this->gsForm->getValue('groups');
+		$teller = 0;
+		foreach($groups as $group)
+		{
+			echo "<input type=\"hidden\" name=\"groups[" . $teller . "]\" value=\"" . $group . "\">\n";
+			$teller++;
+		}
+	?>
+	<table class='indexTable'>
+		<!-- ========================== -->
+		<!-- = De header van de tabel = -->
+		<!-- ========================== -->
+		<tr>
+			<th>
+				Agenda
+			</th>
+			<?php foreach ($this->groups as $group): ?>
+				<th>
+					<?=$group->name?>
+				</th>
+			<?php endforeach ?>
+			<th>
+				Bewerkingen
+			</th>
+		</tr>
+	
+		<!-- ======================== -->
+		<!-- = De body van de tabel = -->
+		<!-- ======================== -->
+		<?php foreach ($this->agendas as $agenda): ?>
+			<?php $agenda->loadGroups(); ?>
+			<tr>
+				<td>
+					<?=$agenda->name?>
+				</td>
+				<?php
+					foreach($this->groups as $group)
+					{
+						echo "<td>\n";
+						if(in_array($group->id, $agenda->getGroups()))
+						{
+							$checked='checked="checked"';
+						}
+						else
+						{
+							$checked='';
+						}
+						$index = '[' . $agenda->id . '][' . $group->id . ']';
+						echo "<input type=\"hidden\" name=\"agendaGrp" . $index . "\"  value=\"no\" >\n";
+						echo "<input type=\"checkbox\" name=\"agendaGrp" . $index . "\"  value=\"yes\" " . $checked . ">\n";
+						echo "</td>\n";  
+					}
+				?>
+				<td>
+					<a href="/agenda/edit/id/<?=$agenda->id?>">bewerk</a>
+					<a href="/agenda/delete/id/<?=$agenda->id?>">verwijder</a>
+				</td>
+			</tr>
+		<?php endforeach ?>
+	</table>
+	<input type="submit" name="submit" value="submit">
+</form>

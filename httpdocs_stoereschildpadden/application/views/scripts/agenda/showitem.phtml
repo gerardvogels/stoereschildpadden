@@ -1,0 +1,42 @@
+<?php $itemValues = $this->item->getFormValues()?>
+<h1>
+	<?=$this->title?>
+</h1>
+<h2>
+	titel
+</h2>
+<p>
+	<?=$this->item->title?>
+</p>
+<h2>datum</h2>
+<p>
+	<?php
+		$date = new Zend_Date($itemValues['starttimestamp']);
+		echo $date->get(Zend_Date::WEEKDAY);
+		echo " ";
+		echo $date->get(Zend_Date::DATE_LONG);
+	?>
+</p>
+<h2>
+	tijden
+</h2>
+<p>
+	van: <?=$itemValues['starttime']?>
+	tot: <?php
+			$date->add($this->item->duration);
+			echo $date->get(Zend_Date::HOUR) . ":" . $date->get(Zend_Date::MINUTE);
+		?>
+	duur: <?=$itemValues['duration']?>
+</p>
+<h2>
+	locatie
+</h2>
+<p>
+	<?=$this->item->location?>
+</p>
+<h2>
+	info
+</h2>
+<p>
+	<?=$this->item->description ?>
+</p>

@@ -1,0 +1,13 @@
+<br /><br />
+<h1><?=$this->title?></h1>
+<?php
+	if($this->user)
+	{
+		$name = $this->user->getFullName();
+		echo "<p>User <?=$name?> is afgemeld.</p>\n";
+	}
+	else
+	{
+		echo "<p>Er was geen actieve gebruiker meer.</p>\n";
+	}
+?>

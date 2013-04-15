@@ -1,0 +1,19 @@
+<h1><?=$this->title?></h1>
+<table class="indexTable">
+	<tr>
+		<th>Agendaitem</th>
+		<th>Bewerkingen</th>
+	</tr>
+	<?php foreach ($this->items as $item): ?>
+		<tr>
+			<td>
+				<?=$item->title?>
+			</td>
+			<td class="buttons">
+				<a href="/agenda/showitem/id/<?=$item->id?>" >toon</a>
+				<a href="/agenda/deleteitem/id/<?=$item->id?>" class="confirm" data:confirmation="Wilt u het iyem <?=strtoupper($item->title)?> echt verwijderen?">verwijder</a>
+				<a href="/agenda/edititem/id/<?=$item->id?>">bewerk</a>
+			</td>
+		</tr>
+	<?php endforeach ?>
+</table>

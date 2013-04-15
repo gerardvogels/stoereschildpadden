@@ -1,0 +1,26 @@
+<?php
+	$indentString = '';
+	$leaderString = '';
+?>
+<ul class="pageMenuList">
+	<?php foreach ($this->menuList as $item ): ?>
+		<?php
+			$indent = str_repeat($indentString, (int)$item['level']) . $leaderString;
+			$prompt = $item['title'];
+			$link = '/page/show/id/' . $item['id'];
+		?>
+		<?php
+			if ($item['id'] == $this->page->id) 
+			{
+				$setActive = 'class="active"';
+			}
+			else
+			{
+				$setActive = '';
+			}
+		?>
+		<li id="<?=$item['id']?>" class="pageMenu_level_<?=$item['level']?>">
+			<?=$indent?><a href="<?=$link?>" <?=$setActive?>><?=$prompt?></a>
+		</li>
+	<?php endforeach ?>
+</ul>

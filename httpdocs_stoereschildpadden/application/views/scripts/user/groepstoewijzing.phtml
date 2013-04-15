@@ -1,0 +1,55 @@
+<h2><?=$this->title?></h2>
+<form enctype="application/x-www-form-urlencoded" action="/user/groepstoewijzing" method="post">
+	<table class='indexTable'>
+		<!-- ========================== -->
+		<!-- = De header van de tabel = -->
+		<!-- ========================== -->
+		<tr>
+			<th>
+				gebruiker
+			</th>
+			<th>
+				e-mail
+			</th>
+			<?php foreach ($this->groups as $group): ?>
+				<th>
+					<?=$group->name?>
+				</th>
+			<?php endforeach ?>
+		</tr>
+	
+		<!-- ======================== -->
+		<!-- = De body van de tabel = -->
+		<!-- ======================== -->
+		<?php foreach ($this->users as $user): ?>
+			<?php $user->loadGroups(); ?>
+			<tr>
+				<td>
+					<?=$user->getFullName()?>
+				</td>
+				<td>
+					<?=$user->email?>
+				</td>
+				<?php
+					foreach($this->groups as $group)
+					{
+						echo "<td>\n";
+						if(in_array($group->id, $user->getGroups()))
+						{
+							$checked='checked="checked"';
+						}
+						else
+						{
+							$checked='';
+						}
+						$index = '[' . $user->id . '][' . $group->id . ']';
+						echo "<input type=\"hidden\" name=\"usrgrp" . $index . "\"  value=\"no\" >\n";
+						echo "<input type=\"checkbox\" name=\"usrgrp" . $index . "\"  value=\"yes\" " . $checked . ">\n";
+						echo "</td>\n";  
+					}
+				?>
+			</tr>
+		<?php endforeach ?>
+	</table>
+	<input type="submit" name="submit" value="submit">
+</form>

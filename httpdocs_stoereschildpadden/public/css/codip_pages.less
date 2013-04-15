@@ -1,0 +1,191 @@
+
+// HTML5 RESET /////////////////////////////////////////////////////////////////////////
+/*html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0}body{line-height:1}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}nav ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}a{font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0}ins{background-color:#ff9;color:#000;text-decoration:none}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:700}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}table{border-collapse:collapse;border-spacing:0}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}input,select{vertical-align:middle}*/
+input:focus,textarea:focus {outline: none;}
+.l-placeholder { color:#777;}
+////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////// tables en td's mogen niet worden gereset i.v.m. mce tabellen //////////////
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,caption,tbody,tfoot,thead,tr,th,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0}body{line-height:1}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}nav ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}a{font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0}ins{background-color:#ff9;color:#000;text-decoration:none}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:700}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}input,select{vertical-align:middle}
+table{border-collapse:collapse; font-size:100%;}
+td{font-size:100%;}
+////////////////////////////////////////////////////////////////////////////////////////
+
+// TYPOGRAPHY //////////////////////////////////////////////////////////////////////////
+
+input {
+	vertical-align:baseline;
+}
+
+input[type=button], input[type=submit] {
+	cursor:pointer;
+	_cursor:hand;
+}
+////////////////////////////////////////////////////////////////////////////////////////
+
+.clearfix() { 
+	zoom: 1; 
+	&:before, &:after {
+		content: '\0020';
+		display: block;
+		overflow: hidden;
+		visibility: hidden;
+		width: 0; height: 0;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+// HANDY FUNCTIONS /////////////////////////////////////////////////////////////////////
+.box-shadow 	(@x: 0, @y: 0, @blur: 1px, @alpha) 					{ @val: @x @y @blur rgba(0, 0, 0, @alpha); box-shadow:         @val; -webkit-box-shadow: @val; -moz-box-shadow:    @val; }
+.inset-shadow 	(@x: 0, @y: 0, @blur: 1px, @color) 					{ @val: inset @x @y @blur rgba(0,0,0,@color); -moz-box-shadow: @val; -webkit-box-shadow: @val; box-shadow: @val; }
+.opacity 		(@a:100) 											{ @op: @a/100; filter:e("alpha(opacity=") @a e(")"); -moz-opacity:@op; -khtml-opacity:@op; opacity:@op; }
+.rounded		(@radius: 5px) 										{ -webkit-border-radius: @radius; -moz-border-radius: @radius; border-radius: @radius; -o-border-radius: @radius; -khtml-border-radius: @radius; }
+.rounded-x		(@top,@right,@bottom,@left) 						{ @val: @top @right @bottom @left; .rounded(@val);}
+.linear-gradient(@stop1:0, @color1:#ccc, @stop2:100%, @color2:#ddd) { background:-webkit-gradient(linear, left bottom, left top, color-stop(@stop1, @color1), color-stop(@stop2, @color2)); background:-moz-linear-gradient(center bottom, @color1 @stop1, @color2 @stop2); background:-o-linear-gradient(center bottom, @color1 @stop1, @color2 @stop2); background:linear-gradient(center bottom, @color1 @stop1, @color2 @stop2); }
+.text-shadow	(@x:0, @y:0, @blur: 1px, @alpha) 					{ @val: @x @y @blur rgba(0,0,0,@alpha); text-shadow: @val; -moz-text-shadow: @val; -webkit-text-shadow:@val; }
+.transition		(@time) 											{ transition: @time; -webkit-transition: @time; }
+.rotate			(@angle) 											{ transform: rotate(@angle); -moz-transform: rotate(@angle); -webkit-transform: rotate(@angle); -o-transform: rotate(@angle); }
+.scale			(@factor)											{ -moz-transform:scale(@factor); -webkit-transform:scale(@factor); transform:scale(@factor); }
+.no-selection   ()													{ -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; }
+////////////////////////////////////////////////////////////////////////////////////////
+
+body {
+	font:100%/1.5 Verdana, Helvetica, sans-serif;
+	margin:1em;
+	color:darken(rgb(0,146,65),15%);
+	background-color:rgb(109,176,103);
+}
+
+p {
+	margin:1em 0;
+}
+
+
+#wrapper {
+	width:920px;
+	margin:0 auto;
+	box-shadow:-0 2px 10px rgba(0,0,0,0.5);
+	-moz-box-shadow:-2px 2px 10px rgba(0,0,0,0.5);
+	-webkit-box-shadow:-2px 2px 10px rgba(0,0,0,0.5);
+}
+
+#pagebanner {
+	width:920px;
+	height:230px;
+	background-color:lighten(rgb(109,176,103),20%);
+	background-image:url(../img/dapperedinodinobanner_2.png);
+	background-repeat:no-repeat;
+}
+
+#groupTabs {
+	background-color:lighten(rgb(109,176,103),40%);
+	border-top:2px solid rgb(0,146,65);
+	ul {
+		list-style:none;
+		height:4em;
+		margin-left:.5em;
+	}
+	li {
+		float:left;
+		height:4em;
+		a {
+			text-decoration:none;
+			background-color:rgb(0,146,65);
+			color:white;
+			text-transform:uppercase;
+			font-size:0.8em;
+			font-weight:bold;
+			line-height:2em;
+			display:inline-block;
+			margin:1em .5em;
+			padding:0 1.3em;
+			box-shadow:-4px 4px 10px rgba(0,0,0,0.5);
+			-moz-box-shadow:-4px 4px 10px rgba(0,0,0,0.5);
+			-webkit-box-shadow:-4px 4px 10px rgba(0,0,0,0.5);
+			border-radius:0;
+			-moz-border-radius:0;
+			-webkit-border-radius:0;
+		}
+	}
+	.active a, a:hover {
+		background-color:lighten(rgb(0,146,65),10%);
+	}
+}
+
+#l-container {
+	background-color:lighten(rgb(109,176,103),40%);
+	padding:1em;
+	.clearfix();
+}
+
+#leftColumn{
+	width:180px;
+	float:left;
+	clear:left;
+	margin-right:2em;
+}
+
+#pageMenu {
+	width:180px;
+/*	margin-right:2em;*/
+	float:left;
+	clear:left;
+	margin-top:10px;
+	ul {
+		list-style:none;
+	}
+	a {
+		text-transform:uppercase;
+		text-decoration:none;
+		font-size:0.8em;
+		background-color:rgb(205,43,0);
+		color:white;
+		display:block;
+		padding:0 1.3em;
+		line-height:2em;
+		margin-bottom:1em;
+		box-shadow:-4px 4px 10px rgba(0,0,0,0.5);
+		-moz-box-shadow:-4px 4px 10px rgba(0,0,0,0.5);
+		-webkit-box-shadow:-4px 4px 10px rgba(0,0,0,0.5);
+		border-radius:0;
+		-moz-border-radius:0;
+		-webkit-border-radius:0;
+	}
+	.active a, a:hover {
+		background-color:lighten(rgb(205,43,0),10%);
+	}
+}
+
+#tnoLogo{
+	margin-top:250px;
+	width:180px;
+	float:left;
+	clear:left;
+	
+}
+
+a {
+	color:rgb(205,43,0);
+}
+a:hover {
+	color:lighten(rgb(205,43,0),20%);
+}
+
+#l-content {
+	float:left;
+	width:600px;
+	img {
+		border:1px solid rgb(0,146,65);
+		max-width:100%;
+	}
+}
+
+h1 {
+	color:rgb(205,43,0);
+	font-weight:bold;
+	font-size:1.5em;
+	margin-bottom:-.33em;
+}
+

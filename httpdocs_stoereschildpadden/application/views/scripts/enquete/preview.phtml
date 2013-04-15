@@ -1,0 +1,110 @@
+<h1><?=$this->title?></h1>
+<div class = "enqueteTitle">
+	<?=$this->enquete->title?>
+</div>
+<div class = "enqueteInfoText">
+	<?=$this->enquete->info?>
+</div>
+<div class="enquete">
+<?php
+	foreach ($this->enquete->questions as $question) 
+	{
+		echo "		<div class=\"question\">\n";
+		switch($question->type)
+		{
+			// ============================
+			// = multiple choice question =
+			// ============================
+			case "mc":
+				echo "			<div class=\"questionHeader\">\n";
+				echo 				$question->kop . "\n";
+				echo "			</div>\n";
+				echo "			<div class=\"questionNumber\">\n";
+				echo "			 	vraag " . $question->number . ": " . "\n";
+				echo "			</div>\n";
+				echo "			<div class=\"questionText\">\n";
+				echo 				$question->tekst . "\n";
+				echo "			</div>\n";
+				echo "			<div class=\"mcAnwers\">\n";
+				$answers = $question->getMcAnswers();
+				foreach ($answers as $answer) 
+				{
+					if ($answer->number == $question->goedAntwoord) 
+					{
+						$class = "<class=\"questionRefAnswerText\">";
+					}
+					else
+					{
+						$class = "<class=\"questionAnswerText\">";
+					}
+					echo "				<div $class\n";
+					echo 					$answer->number . ": " . $answer->text . "\n";
+					echo "				</div>\n";
+				}
+				echo "			</div>\n";
+				break;
+			
+			// ====================
+			// = Numeric question =
+			// ====================
+			case "numeriek":
+				echo "			<div class=\"questionHeader\">\n";
+				echo 				$question->kop . "\n";
+				echo "			</div>\n";
+				echo "			<div class=\"questionNumber\">\n";
+				echo "			 	vraag " . $question->number . ": " . "\n";
+				echo "			</div>\n";
+				echo "			<div class=\"questionText\">\n";
+				echo 				$question->tekst . "\n";
+				echo "			</div>\n";
+				echo "			<div class=\"questionNumAnswer\">\n";
+				echo 				$question->goedAntwoord . "\n";
+				echo "			</div>\n";
+				break;
+				
+			// ==============
+			// = Open vraag =
+			// ==============
+			case "open":
+				echo "			<div class=\"questionHeader\">\n";
+				echo 				$question->kop . "\n";
+				echo "			</div>\n";
+				echo "			<div class=\"questionNumber\">\n";
+				echo "			 	vraag " . $question->number . ": " . "\n";
+				echo "			</div>\n";
+				echo "			<div class=\"questionText\">\n";
+				echo 				$question->tekst . "\n";
+				echo "			</div>\n";
+				echo "			<div class=\"questionOpenAnswer\">\n";
+				echo "				...........<br>..........." . "\n";
+				echo "			</div>\n";
+				break;
+				
+			// ===============
+			// = Alleen info =
+			// ===============
+			case "info":
+				echo "			<div class=\"enqueteInfoHeader\">\n";
+				echo 				$question->kop . "\n";
+				echo "			</div>\n";
+				echo "			<div class=\"enqueteInfo\">\n";
+				echo 				$question->tekst . "\n";
+				echo "			</div>\n";
+				break;
+				
+			// =============
+			// = tussenkop =
+			// =============
+			case "kop":
+				echo "			<div class=\"enqueteSectionHeader\">\n";
+				echo 				$question->kop . "\n";
+				echo "			</div>\n";
+				break;
+				
+			default:
+				echo "<p>FOUT: " . $question->type . " is geen geldig vraagtype.</p>\n";
+		}
+		echo "		</div>\n";
+	}
+?>
+</div>

@@ -1,0 +1,20 @@
+<h1><?=$this->title?></h1>
+<table class="indexTable">
+	<tr>
+		<th>Titel</th>
+		<th>Bewerkingen</th>
+	</tr>
+	<?php foreach ($this->enquetes as $enquete): ?>
+		<tr>
+			<td>
+				<?=$enquete->title?>
+			</td>
+			<td>
+				<a href="/enquete/preview/id/<?=$enquete->id?>">toon</a>
+				<a href="/enquete/delete/id/<?=$enquete->id?>">verwijder</a>
+				<a href="/enquete/edit/id/<?=$enquete->id?>">bewerk</a>
+				<a href="/enquete/preview/id/<?=$enquete->id?>">preview</a>
+			</td>
+		</tr>
+	<?php endforeach ?>
+</table>

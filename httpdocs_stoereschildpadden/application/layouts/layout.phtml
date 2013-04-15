@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="nl">
+<?php 
+
+$this->headTitle($this->title);
+
+?>
+
+<head> 
+	
+	<!--
+	  -
+	  - Vogels Internettoepassingen
+	  - http://vogels-it.nl
+	  - info@vogels-it.nl
+	  -
+	 -->
+	
+	<?= $this->headTitle() . "\n" ?>
+	<meta charset="utf-8">
+	<?= $this->headScript() . "\n" ?>
+	<?= $this->headLink() . "\n" ?>
+	<?= $this->jQuery() . "\n" ?>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+</head>
+
+
+<body>
+	<?php if ($this->user): ?>
+		<div id="currentUser">
+			<?php
+				echo $this->user->getFullName() . '. ';
+				// echo ' (' . implode(', ', $this->user->getGroupNames()) . ')';
+				// echo ' (' . implode(', ', $this->user->getRoleNames()) . ')';
+				echo 'Ga naar <a href="/admin">Admin pagina\'s</a>';
+			?>
+		</div>
+	<?php endif ?>
+	<div id="wrapper">
+	<div id="pagebanner">
+		
+	</div>
+
+	<?php if ($this->tabs): ?>
+		<div id="groupTabs">
+			<?=$this->tabs?>
+		</div>
+	<?php endif ?>
+
+	<div id="l-container">
+		<div id="leftColumn">
+			<?php if ($this->pageMenu): ?>
+				<div id="pageMenu">
+					<?=$this->pageMenu?>
+					&nbsp;
+				</div>
+			<?php endif ?>
+			<div id="tnoLogo">
+				<img src='/img/TNO_ifl_zwart.png' alt='TNO logo'>
+				<a href='http://www.jeugdkennis.nl/jgk/Rubrieken-Jeugdkennis/Bijdragen-kennispartners/Dappere-Dinos-en-KIES-steunen-kinderen-na-een-scheiding' target='_blank'>
+					<img src='/img/Logo_parel_kleur.png' alt='ZonMw Parel'>
+				</a>
+			</div>
+		</div>
+
+		<?php if ($this->sysMessages): ?>
+			<div id="systemMessages">
+				<?=$this->sysMessages?>
+			</div>
+		<?php endif ?>
+		<?php if (is_array($this->flowMenuItems)): ?>
+			<div id="flowmenu">
+				<ul>
+					<?php foreach ($this->flowMenuItems as $prompt => $link): ?>
+						<li><a href="<?=$link?>"><?=$this->escape($prompt)?></a></li>
+					<?php endforeach ?>
+				</ul>
+			</div> 
+		<?php endif ?>
+		<div id="l-content">
+			<?=$this->layout()->content?>	
+		</div>
+	</div>
+	</div>
+</body>
+</html>

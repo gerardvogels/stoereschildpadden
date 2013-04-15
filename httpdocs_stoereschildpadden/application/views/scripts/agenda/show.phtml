@@ -1,0 +1,37 @@
+<h1><?=$this->title?></h1>
+<p id="agendInfo"><?=nl2br($this->agenda->info)?></p>
+<table class="indexTable">
+	<tr>
+		<th>datum</th>
+		<th>van - tot</th>
+		<th>Naam</th>
+	</tr>
+	<?php foreach ($this->agenda->agendaItems as $item): ?>
+		<?php $itemValues = $item->getFormValues()?>
+		<tr>
+			<td>
+				<?php
+					$date = new Zend_Date($itemValues['starttimestamp']);
+					echo $date->get(Zend_Date::WEEKDAY);
+					echo " ";
+					echo $date->get(Zend_Date::DATE_LONG);
+				?>
+			</td>
+			<td>
+				<?=$itemValues['starttime']?> - 
+				<?php
+					$date->add($item->duration);
+					echo $date->get(Zend_Date::HOUR) . ":" . $date->get(Zend_Date::MINUTE);
+				?>
+			</td>
+			<td>
+				<?=$itemValues['title']?>
+			</td>
+			<td>
+				<a href="/agenda/showitem/id/<?=$itemValues['id']?>">toon</a>
+				<a href="/agenda/deleteitem/id/<?=$itemValues['id']?>">verwijder</a>
+				<a href="/agenda/edititem/id/<?=$itemValues['id']?>">bewerk</a>
+			</td>
+		</tr>
+	<?php endforeach ?>
+</table>

@@ -1,0 +1,32 @@
+<h1><?=$this->title?></h1>
+<table class="indexTable">
+	<tr>
+		<th>Move</th>
+		<th>Naam</th>
+		<th>Startpagina</th>
+		<th>Bewerkingen</th>
+	</tr>
+	<?php foreach ($this->groups as $group): ?>
+		<?php
+			$startPageName = $group->getStartPageName();
+		?>
+		<?php if ($group->name != 'publiek'): ?>
+			<tr>
+				<td class="actions">
+					<a href="/group/move/g/<?=$group->id?>/d/up">down</a>
+					<a href="/group/move/g/<?=$group->id?>/d/down">up</a>
+				</td>
+				<td>
+					<?=$group->name?>
+				</td>
+				<td class="buttons">
+					<a href="/group/startpage/id/<?=$group->id?>"><?=$startPageName?></a>
+				</td>
+				<td class="actions">
+					<a href="/group/edit/id/<?=$group->id?>">bewerk</a>
+					<a href="/group/delete/id/<?=$group->id?>" class="confirm" data:confirmation="Wilt u de groep <?=strtoupper($group->name)?> echt verwijderen?">verwijder</a>
+				</td>
+			</tr>
+		<?php endif ?>
+	<?php endforeach ?>
+</table>

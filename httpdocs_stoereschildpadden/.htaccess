@@ -1,0 +1,18 @@
+#.htaccess SETTINGS TO TURN OFF  
+# STUPID MAGIC QUOTES IN PHP  
+# I HATE MAGIC QUOTES PROBLEMS  
+php_flag magic_quotes_gpc off  
+
+RewriteEngine On
+
+RewriteRule ^\.htaccess$ - [F]
+
+RewriteCond %{REQUEST_URI} =""
+RewriteRule ^.*$ /public/index.php [NC,L]
+
+RewriteCond %{REQUEST_URI} !^/public/.*$
+RewriteRule ^(.*)$ /public/$1
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^public/.*$ /public/index.php [NC,L]

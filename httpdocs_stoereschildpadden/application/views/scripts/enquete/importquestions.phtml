@@ -1,0 +1,15 @@
+<h1><?=$this->title?></h1>
+<p><?=$this->enquete->info?></p>
+<p>
+	Gebruik onderstaand formuliertje om de vragen voor deze enquete te uploaden naar de server.
+	Het bestand dient in het zogenaamde YAML formaat geschreven te zijn.
+</p>
+<p>
+	Een voorbeeldbestand kunt u openen door <a href="/enquete/ymlexample" target="_blank">hier</a> te klikken.
+	<br>Achtergondinformatie over het formaat vind u op 
+	<a href="http://components.symfony-project.org/yaml/trunk/book/02-YAML" target="_blank"> de sfYaml website</a>.
+</p>
+<?=$this->form?>
+
+<pre><?=$this->yamlcode?></pre>
+

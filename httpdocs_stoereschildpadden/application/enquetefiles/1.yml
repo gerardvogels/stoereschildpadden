@@ -1,0 +1,84 @@
+# een regel die met een # begint is commentaar, die wordt genegeerd.
+# de witruimte aan het begin van een regel is van wezenlijk belang.
+# deze ruimte mag worden gevormd met behulp van tabs.
+# mogelijke types: mc (multiple choice), numeriek, open, info, kop
+
+vragen:
+    -   
+        type: mc
+        kop: Een vraag kan een kop bevatten
+        tekst: Wie was de eerste president van de USA?
+        mcAntwoorden:
+            - Roosevelt
+            - Bush
+            - Clinton
+            - George Washington
+            # Het aantal antwoorden is helemaal vrij
+        goedAntwoord: '4'
+        # goedAntwoord is optioneel (bij alle vragen)
+        # kan gebruikt worden voor terugkoppeling aan de respondent
+
+    -
+        type: mc
+        kop: Een kop is niet verplicht.
+        tekst: Wat was de achternaam van zijn broer?
+        mcAntwoorden:
+            - Washington
+            - Napoleon
+            - ὁ Ηερακλης
+        goedAntwoord: '1'
+
+    -
+        type: numeriek
+        kop: De kop regel mag ook worden weggelaten in dit bestand.
+        tekst: Hoevaak poets je je tanden per dag?
+        goedAntwoord: '3'
+    
+    -
+        type: open
+        tekst: Waarom groeien bloemen naar de zon toe?
+        goedAntwoord: Omdat de lengtegroei door licht wordt afgeremd.
+        
+    -   
+        type: info
+        # Kan gebruikt worden om de respondent gedurende het invullen van extra inbfo te voorzien.
+        kop: Dit is de kop van de tekst.
+        #het | teken hieronder is van belang 
+        tekst: |
+            sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+            Donec ullamcorper nulla non metus auctor fringilla.
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
+            eget lacinia odio sem nec elit. Etiam porta sem malesuada magna mollis euismod. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+            Donec id elit non mi porta gravida at eget metus.
+            
+            Cum sociis natoque penatibus et magnis dis parturient montes, 
+            nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, 
+            vestibulum at eros. Aenean eu leo quam. 
+            Pellentesque ornare sem lacinia quam venenatis vestibulum. 
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+    
+    -
+        type: kop
+        kop: Deze kop kan b.v. gebruikt worden om een nieuw deel van de enquete aan te kondigen.
+        
+    -   
+        type: mc
+        kop: Weet je iets van het internet?
+        tekst: |
+            Nullam id dolor id nibh ultricies vehicula ut id elit. 
+            Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
+            ut fermentum massa justo sit amet risus. Nulla vitae elit libero, a 
+            pharetra augue. Cum sociis natoque penatibus et 
+            magnis dis parturient montes, nascetur ridiculus mus. 
+            Donec sed odio dui. Donec sed odio dui. 
+            
+            Door wie is het internet uitgevonden?
+        mcAntwoorden:
+            - Door Google
+            - Door Bill Gates
+            - Dat weet niemand
+            - George Washington
+            - Het internet is niet uitgevonden
+            - Dit is een compleet onzinnige vraag
+            - Door Bell Labs in Amerika
+        goedAntwoord: '4'
