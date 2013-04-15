@@ -83,7 +83,7 @@ class Model_Menu
 				        $editimg          = '<img src="/public/media/img/admin/editpage.png" alt="bewerk pagina">';
 				        $moveUp           = " <a href=\"/menu/moveup/id/$item->id\">$up</a> ";
 				        $moveDown         = " <a href=\"/menu/movedown/id/$item->id\">$down</a> ";
-						$confirm          = 'class="confirmDelete" data-confirmation="Weet u zeker dat u menuitem ' . $item->getPath() . ' wilt verwijderen?"';
+						$confirm          = 'class="confirm" data:confirmation="Weet u zeker dat u menuitem ' . $item->getPath() . ' wilt verwijderen?"';
 				        $delete           = " <a href=\"/menu/deleteitem/id/$item->id\" $confirm>$delimg</a> ";
                         // $link             = " <a href=\"/menu/edititem/id/$item->id\"><span> [" . $level . '] ' . $item->menutext . "</span></a>";
                         $link             = " <a href=\"/menu/edititem/id/$item->id\"><span>" . $item->menutext . "</span></a>";

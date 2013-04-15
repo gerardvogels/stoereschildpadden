@@ -134,6 +134,7 @@ class MenuController extends Zend_Controller_Action
     {
         $this->view->layout()->setLayout('admin');
 		$this->view->headLink()->appendStylesheet('/css/codip_admin.css');
+        $this->view->jQuery()->addJavascriptFile('/js/confirm_delete.js');
 
 		if(!$this->access->isGod() and !$this->access->hasRole('editor'))
 		{
