@@ -167,7 +167,9 @@ body {
   font: 100%/1.5 Verdana, Helvetica, sans-serif;
   margin: 1em;
   color: #00461f;
-  background-color: #6db067;
+  /*	background-color:rgb(176,176,176);*/
+
+  background-color: #2e8ab8;
 }
 p {
   margin: 1em 0;
@@ -182,13 +184,13 @@ p {
 #pagebanner {
   width: 920px;
   height: 230px;
-  background-color: #add3aa;
-  background-image: url(../img/schildpadbannerbanner.png);
+  background-color: #47a3d1;
+  background-image: url(../img/schildpadbanner.png);
   background-repeat: no-repeat;
 }
 #groupTabs {
-  background-color: #eef6ed;
-  border-top: 2px solid #009241;
+  background-color: #ebf5fa;
+  border-top: 2px solid #297aa3;
 }
 #groupTabs ul {
   list-style: none;
@@ -201,7 +203,7 @@ p {
 }
 #groupTabs li a {
   text-decoration: none;
-  background-color: #009241;
+  background-color: #297aa3;
   color: white;
   text-transform: uppercase;
   font-size: 0.8em;
@@ -219,10 +221,10 @@ p {
 }
 #groupTabs .active a,
 #groupTabs a:hover {
-  background-color: #00c558;
+  background-color: #70b8db;
 }
 #l-container {
-  background-color: #eef6ed;
+  background-color: #ebf5fa;
   padding: 1em;
   zoom: 1;
 }
