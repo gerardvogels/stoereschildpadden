@@ -8,38 +8,41 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 		Zend_Session::start();
 
-        // =======================================================================
-        // = login tijdens de ontwikkeling moet weggehaald worden voor productie =
-        // =======================================================================
-		if (isset($_POST['codip_temp_pwd']) and $_POST['codip_temp_pwd'] == 'dsiatveSS') 
+        // ===========================================================================
+        // = login tijdens de ontwikkeling moet op false worden gezet voor productie =
+        // ===========================================================================
+		if (false)
 		{
-		    $_SESSION['codip_temp_pwd'] = 'dsiatveDR';
+			if (isset($_POST['codip_temp_pwd']) and $_POST['codip_temp_pwd'] == 'dsiatveSS') 
+			{
+			    $_SESSION['codip_temp_pwd'] = 'dsiatveDR';
+			}
+		
+	        if(!isset($_SESSION['codip_temp_pwd']) or $_SESSION['codip_temp_pwd'] != 'dsiatveDR')
+	        {
+	            echo '
+	                <!DOCTYPE html>
+
+	                <html lang="nl">
+	                <head>
+	                    <title>Ontwikkelsite CODIP</title>
+	                </head>
+	                <body>
+	                    <h1>Ontwikkelsite CODIP / Dappere Dino\'s</h1>
+	                    <p>
+	                        Deze site is in ontwikkeling. Hij zal straks op deze plaats verdwijnen en is nu alleen toegankelijk voor ontwikkelaars.
+	                        Bent u een van deze ontwikkelaars, vul dan het u bekende wachtwoord in.
+	                    </p>
+	                    <form method="POST">
+	                        <input type="password" name="codip_temp_pwd" id="password"></input>
+	                        <input type="submit"></input>
+	                    </form>
+	                </body>
+	                </html>
+	                    ' . "\n";
+	            exit;
+	        }
 		}
-		
-		        if(!isset($_SESSION['codip_temp_pwd']) or $_SESSION['codip_temp_pwd'] != 'dsiatveDR')
-		        {
-		            echo '
-		                <!DOCTYPE html>
-		
-		                <html lang="nl">
-		                <head>
-		                    <title>Ontwikkelsite CODIP</title>
-		                </head>
-		                <body>
-		                    <h1>Ontwikkelsite CODIP / Dappere Dino\'s</h1>
-		                    <p>
-		                        Deze site is in ontwikkeling. Hij zal straks op deze plaats verdwijnen en is nu alleen toegankelijk voor ontwikkelaars.
-		                        Bent u een van deze ontwikkelaars, vul dan het u bekende wachtwoord in.
-		                    </p>
-		                    <form method="POST">
-		                        <input type="password" name="codip_temp_pwd" id="password"></input>
-		                        <input type="submit"></input>
-		                    </form>
-		                </body>
-		                </html>
-		                    ' . "\n";
-		            exit;
-		        }
 	}
 	
 	protected function _initConfig()

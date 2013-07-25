@@ -226,6 +226,7 @@ p {
 #l-container {
   background-color: #ebf5fa;
   padding: 1em;
+  min-height: 400px;
   zoom: 1;
 }
 #l-container:before,
@@ -279,10 +280,9 @@ p {
   background-color: #ff3601;
 }
 #tnoLogo {
-  margin-top: 250px;
+  position: absolute;
+  top: 600px;
   width: 180px;
-  float: left;
-  clear: left;
 }
 a {
   color: #cd2b00;
